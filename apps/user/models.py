@@ -10,6 +10,8 @@ from django.contrib.auth.models import User
 class Categoria(models.Model):
     catid = models.AutoField(primary_key=True)
     catipo = models.CharField(max_length=50, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):# unicode
         return self.catipo
@@ -36,8 +38,10 @@ class DatosPersonales(models.Model):
     datnumeroid = models.CharField(max_length=20, blank=True, null=True)
     datelefono = models.CharField(max_length=20, blank=True, null=True)
     datcorreo = models.CharField(max_length=50, blank=True, null=True)
-    foto = models.ImageField(upload_to='usuarios', default='usuarios/usuario.png')
+    foto = models.ImageField(upload_to='usuarios/', default='usuarios/usuario.png')
     usuid = models.OneToOneField(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):# unicode
         return "%s %s" % (self.datnombre, self.datapellido)
@@ -49,6 +53,8 @@ class DatosPersonales(models.Model):
 class Rol(models.Model):
     rolid = models.AutoField(primary_key=True)
     roltipo = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):# unicode
         return self.roltipo
@@ -60,6 +66,8 @@ class Rol(models.Model):
 class UsuarioRol(models.Model):
     rolid = models.ForeignKey(Rol, on_delete=models.CASCADE)
     usuid = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):# unicode
         return "%s-%s" % (self.rolid.roltipo, self.usuid.username)
@@ -75,8 +83,10 @@ class Vehiculo(models.Model):
     vehmarca = models.CharField(max_length=50)
     vehestado = models.CharField(max_length=30, blank=True, null=True)
     vehprecio = models.IntegerField()
-    vehfoto = models.ImageField(upload_to='vehiculos', default='vehiculos/vehiculo.png')
+    vehfoto = models.ImageField(upload_to='vehiculos/', default='vehiculos/vehiculo.png')
     datid = models.ForeignKey(DatosPersonales, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):# unicode
         return "%s-%s" % (self.vehplaca, self.vehmarca)
