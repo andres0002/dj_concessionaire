@@ -84,6 +84,6 @@ PORT_PRD = port_db
 ## 12. Ejecutar el proyecto.
 ### -> py manage.py runserver
 ## 13. Ingresar al admin de django.
-### -> Agregra la data necesaria.
+### -> Agregar la data necesaria.
 ## 14. Desativar el venv.
 ### -> deactivate
